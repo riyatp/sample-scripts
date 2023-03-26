@@ -1,0 +1,35 @@
+To set up a web service on Denodo VDP (Virtual DataPort), follow these steps:
+
+Create a web service data source:
+In the Denodo VDP administration tool, create a new data source for the web service. To do this, go to "File" -> "New" -> "Data source", select "Web service" as the data source type, and enter the necessary information such as the WSDL URL, service name, and port.
+
+Define the view:
+Once you have created the data source, you need to define a view that uses the web service data source. To do this, go to "File" -> "New" -> "Base view", and select the web service data source that you created. Denodo will automatically generate a set of tables and views based on the web service's schema.
+
+Define the web service operation:
+Once you have defined the view, you need to define the web service operation that you want to expose as a web service. To do this, right-click on the view in the Denodo VDP administration tool, select "New" -> "Web service operation", and enter the necessary information such as the operation name, input and output parameters, and HTTP method.
+
+Configure the web service:
+Once you have defined the web service operation, you need to configure the web service. To do this, go to "File" -> "New" -> "Web service", and enter the necessary information such as the service name, endpoint URL, and WSDL URL. In the "Operations" tab, select the web service operation that you defined in step 3.
+
+Publish the web service:
+Once you have configured the web service, you need to publish it so that it can be accessed by external clients. To do this, right-click on the web service in the Denodo VDP administration tool, and select "Publish". Denodo will generate a WSDL file that describes the web service, and you can use this file to generate client code in languages such as Java or .NET.
+
+That's it! With these steps, you should have set up a web service on Denodo VDP. You can now use the web service to expose your data sources as RESTful APIs that can be accessed by external clients.
+
+=========================================
+To authenticate to a Denodo web service using OAuth 2.0, you need to perform the following steps:
+
+Register a client application with the OAuth 2.0 provider:
+First, you need to register your client application with the OAuth 2.0 provider that Denodo is using. This will involve providing details such as the client ID and secret for your application, as well as the redirect URL for callbacks.
+
+Configure the Denodo web service to use OAuth 2.0 authentication:
+Next, you need to configure the Denodo web service to use OAuth 2.0 authentication. This can typically be done by updating the DENODO_HOME/conf/rest-api/authentication.properties file to include the necessary OAuth 2.0 settings, such as the token URL, authorization URL, and client ID and secret.
+
+Obtain an access token:
+Once the Denodo web service is configured to use OAuth 2.0 authentication, you can obtain an access token by making a request to the OAuth 2.0 provider. The exact process for obtaining an access token will depend on the provider and the authentication flow that you are using, but it typically involves making a request to the provider's token endpoint and providing your client ID and secret, as well as any necessary authentication parameters.
+
+Include the access token in requests to the Denodo web service:
+Finally, you need to include the access token in requests to the Denodo web service. This can typically be done by including an Authorization header in your requests with the value Bearer <access_token>, where <access_token> is the access token that you obtained in step 3.
+
+That's it! With these steps, you should now be able to authenticate to the Denodo web service using OAuth 2.0. Note that the exact details of the authentication process will depend on the OAuth 2.0 provider that you are using, so you may need to consult their documentation for more information.
