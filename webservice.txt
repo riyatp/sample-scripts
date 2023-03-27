@@ -1,3 +1,38 @@
+import requests
+import json
+
+# Denodo Solution Manager API endpoint
+url = "http://<solution-manager-host>:<solution-manager-port>/denodo-solution-manager/api/v1.0"
+
+# Denodo Solution Manager API credentials
+username = "<username>"
+password = "<password>"
+
+# Authentication headers
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": "Basic " + (username + ":" + password).encode("base64").strip()
+}
+
+# Deployment process ID
+deployment_process_id = "<deployment-process-id>"
+
+# API endpoint for getting the status of a deployment process
+deployment_process_status_endpoint = url + "/deployment-processes/" + deployment_process_id + "/status"
+
+# GET request to get the status of the deployment process
+response = requests.get(deployment_process_status_endpoint, headers=headers)
+
+# Parse the response as JSON
+response_json = json.loads(response.text)
+
+# Get the status of the deployment process from the JSON response
+deployment_process_status = response_json["status"]
+
+# Print the deployment process status
+print("Deployment process status: " + deployment_process_status)
+
+
 To set up a web service on Denodo VDP (Virtual DataPort), follow these steps:
 
 Create a web service data source:
