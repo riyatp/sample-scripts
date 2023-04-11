@@ -69,3 +69,35 @@ Access the Denodo Virtual DataPort web client and click on the "Login" button.
 Select the OAuth provider and enter your credentials.
 If the authentication is successful, you will be redirected to the Denodo Virtual DataPort web client.
 Note: The exact steps may vary depending on the version of Denodo you are using. It's recommended to refer to the Denodo documentation for detailed instructions.
+
+
+
+
+import requests
+import time
+
+def call_api_with_timeout(api_url, timeout_seconds):
+    """Call the API at api_url for a maximum of timeout_seconds seconds.
+    Returns True if the API call succeeds, False if it times out or fails.
+    """
+    try:
+        start_time = time.monotonic()
+        while True:
+            response = requests.get(api_url)
+            if response.status_code == 200:
+                # API call succeeded
+                return True
+            elapsed_time = time.monotonic() - start_time
+            if elapsed_time >= timeout_seconds:
+                # Timeout reached
+                return False
+            time.sleep(1)
+    except:
+        return False
+
+# Example usage: call the API at 'https://my-api.com' for up to 30 minutes,
+# and if it succeeds, execute the function 'my_function'
+if call_api_with_timeout('https://my-api.com', 1800):
+    my_function()
+else:
+    print("API call failed or timed out")
