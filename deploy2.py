@@ -60,3 +60,18 @@ response = requests.post(api_url + "/deployments", headers=headers, auth=auth, d
 
 # Print the response from the API
 print(response.json())
+
+
+import socket
+import configparser
+
+# Get the hostname of the machine
+hostname = socket.gethostname()
+
+# Read the config file based on the hostname
+config = configparser.ConfigParser()
+config.read(f"{hostname}.ini")
+
+# Access config values by section and option name
+option_value = config.get("section_name", "option_name")
+
